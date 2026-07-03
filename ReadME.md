@@ -1,4 +1,4 @@
-##Day 1
+## Day 1
 
 ### 3.1
 * understood the formula for linear model, its loss function and the its optimization formula.
