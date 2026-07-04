@@ -6,10 +6,11 @@ from d2l import torch as d2l
 import matplotlib.pyplot as plt
 
 # ​‌‌‌Utlities​
-#​‌‌‍ add class​
+#​‌‌‍ add class
+# ​#Function take an object as input , applys setattr to add an object to the class as a method and returns the wrapper function.
 def add_to_class(Class):  #@save
     """Register functions as methods in created class."""
-    def wrapper(obj):
+    def wrapper(obj): 
         setattr(Class, obj.__name__, obj)
     return wrapper
 
@@ -19,19 +20,20 @@ class A:
 
 a = A()
 
-@add_to_class(A)
+@add_to_class(A) #the demo of the add_to_class decorator, it adds the do method to the class A. 
 def do(self):
     print('Class attribute "b" is', self.b)
 
 a.do()
 # ​‌‌‍Hyperparameter​
-class HyperParameters:  #@save
+#the hyperparameter class is a base class for classes that have a hyperparameter.
+class HyperParameters:  #@save 
     """The base class of hyperparameters."""
-    def save_hyperparameters(self, ignore=[]):
+    def save_hyperparameters(self, ignore=[]): # this function saves the hyperparameter of that class, the list of ignored is used to ignore those hyperparameters
         raise NotImplemented
     
 # Call the fully implemented HyperParameters class saved in d2l
-class B(d2l.HyperParameters):
+class B(d2l.HyperParameters):  # the demo of the HyperParameters class, it saves the hyperparameter a and b but ignores c.
     def __init__(self, a, b, c):
         self.save_hyperparameters(ignore=['c'])
         print('self.a =', self.a, 'self.b =', self.b)
@@ -41,18 +43,20 @@ b = B(a=1, b=2, c=3)
 
 
 #  ​‌‌‍Progress board​
+# Progress board is a class made to plot the data ponts in animation
 class ProgressBoard(d2l.HyperParameters):  #@save
     """The board that plots data points in animation."""
+    # the init function initializes the progress board with the given parameters like xlabel, ylabel, xlim, ylim, xscale, yscale, ls, colors, fig, axes, figsize and display.
     def __init__(self, xlabel=None, ylabel=None, xlim=None,
                  ylim=None, xscale='linear', yscale='linear',
                  ls=['-', '--', '-.', ':'], colors=['C0', 'C1', 'C2', 'C3'],
                  fig=None, axes=None, figsize=(3.5, 2.5), display=True):
         self.save_hyperparameters()
-
+    # the draw method is used to draw the data points, its take x,y,label and every_n as inputs, this is a template method and its will be implemented in the child class.
     def draw(self, x, y, label, every_n=1):
         raise NotImplemented
     
-board = d2l.ProgressBoard('x')
+board = d2l.ProgressBoard('x') # the demo of the ProgressBoard class.
 for x in np.arange(0, 10, 0.1):
     board.draw(x, np.sin(x), 'sin', every_n=2)
     board.draw(x, np.cos(x), 'cos', every_n=10)
@@ -60,6 +64,7 @@ for x in np.arange(0, 10, 0.1):
 plt.savefig('day1.1.png')
 
 #  ​‌‌‍Module​
+# Module is a base class for all the models, it has methods like loss, forward, plot, training_step, validation_step and configure_optimizers which are to be implemented in the child class.
 class Module(nn.Module, d2l.HyperParameters):  #@save
     """The base class of models."""
     def __init__(self, plot_train_per_epoch=2, plot_valid_per_epoch=1):
@@ -67,7 +72,7 @@ class Module(nn.Module, d2l.HyperParameters):  #@save
         self.save_hyperparameters()
         self.board = ProgressBoard()
 
-    def loss(self, y_hat, y):
+    def loss(self, y_hat, y): 
         raise NotImplementedError
 
     def forward(self, X):
@@ -105,6 +110,7 @@ class Module(nn.Module, d2l.HyperParameters):  #@save
     
 
 #  ​‌‌‍DataModule​
+# DataModule is a base class for all the data modules, it has methods like get_dataloader, train_dataloader and val_dataloader which are to be implemented in the child class.
 class DataModule(d2l.HyperParameters):  #@save
     """The base class of data."""
     def __init__(self, root='../data', num_workers=4):
@@ -121,6 +127,7 @@ class DataModule(d2l.HyperParameters):  #@save
     
 
 # ​‌‌‍Trainer  ​ 
+# Trainer is a base class for training models with data, it has methods like prepare_data, prepare_model, fit and fit_epoch which are to be implemented in the child class.
 class Trainer(d2l.HyperParameters):  #@save
     """The base class for training models with data."""
     def __init__(self, max_epochs, num_gpus=0, gradient_clip_val=0):
