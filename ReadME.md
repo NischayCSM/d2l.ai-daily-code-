@@ -22,3 +22,28 @@
 * to read the data add a function called get_dataloader to the class, it first checks if the data is for training or for validation
 * if for training it creates a list of indices of the data and shuffles them and if validation its takes the list of indices and make them into batches and gives batch indices
 * there is also a concise implementation of the synthetic regression data, that does the same as above.
+
+---
+
+## Day 2
+
+### 3.4
+* implemented linear regression from scratch by first making a class for linear regression that accepted took number of inputs and learning rate as inputs
+* then added two method to the class forward that calculates the output value and loss to calculate the loss
+* the made an SGD class i.e. standard gradient descent to calculate the stocastic gradient of minibatch made
+* then added a method that calls sgd class to the main linear regression class
+* finally added a method to the trainer class made in 3.2 which the model is gone through epochs where the data is extracted for either training or validation
+* then finally ran the model and train it and got a plot graph as an output.
+
+---
+
+### 3.5
+* while 3.4 focused on how to make linear regression from scratch, this chapter focuses on the easier and faster implementation of linear regression
+* used apis for faster implementation and by using apis there is no need for some methods that were in the implementation from scratch.
+
+---
+
+### 3.7
+* implement it frim scratch used higher dimensional linear regression data, there defined a l2 penalty function
+* then class weight decay where we initialize number of inputs, lambda, learning rate and sigma and then we calculate loss
+* then finally trained the model without regularization and with regularization and got the respective graphs as output.
