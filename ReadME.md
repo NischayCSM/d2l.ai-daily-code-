@@ -90,3 +90,54 @@
 * plotted relu function and gradient of relu
 * plotted sigmoid function and gradient of sigmoid
 * plotted tanh function and gradient of tanh
+
+---
+
+## Day 4
+
+### 5.2
+*  implemented mlp from scratch
+* made a class to initialize the weights and bias of the mlp for the 2-layer mlp
+* then made a forward function that calculates values in the 2-layer mlp using linear equations
+* wrapped the first layer in relu activation
+* then also made a concise implementation using built in modules in pytorch, the output was the same.
+
+---
+
+### 5.4
+* implemented code for vanishing gradients and got output
+* implemented code for expoding gradients and got output
+
+---
+
+### 5.6
+* implement dropout in two way from scratch and concise
+* in scratch, made a multilayer perceptron using basicing linear model and then in forward function while executing droped out a few using the dropout function i made
+* in concise, did the same but used built in modules in pytorch using a sequential model of a few LazyLinear layer and keeping dropout between them, the output remained the same.
+
+---
+
+### 5.7
+*  executed a house price prediction model, and got the data from kaggle
+* the data is quite board consisting of nearly 3000 rows of data, and each consisting of nearly 80 columns, this data is downloaded from the url and is stored at location stored in self.root
+* then preprocess the data to avoid error during training
+* then load the data to the model depending on if it is for training or validation
+* for validation k-fold cross validation is used for which k-fold data is made by one function and another calculates the validation
+* then the model is trained on the data and output is produced.
+
+---
+
+### 6.1
+* here to see how layer and modules worked, implemented a code of a network i multiple ways
+* first executed it in a standard fast way using nn.sequential and implemented modules in it
+* next  custom made a mlp class of the same layer as in the sequential
+* lastly made a custom sequential and implemented the modules in it, all gave the same output shape
+* next for implementation of layer in forward propagation , made a hidden mlp that calculates using linear equation and made a nestmlp that has a sequential of lazylinear and relu and after that another lazy linear
+* and all this is used as a module in a sequential in the order of nestmlp, lazylinear, fixedhiddenmlp.
+
+---
+
+### 6.2
+* for accessing parameter targeted parameter can be accessed by indexing the parameter in the model and using bias.data
+* for all parameters a for loop is enough
+* for sharing parameter using shared layer in the sequential.
