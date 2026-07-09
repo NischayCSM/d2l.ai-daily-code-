@@ -141,3 +141,78 @@
 * for accessing parameter targeted parameter can be accessed by indexing the parameter in the model and using bias.data
 * for all parameters a for loop is enough
 * for sharing parameter using shared layer in the sequential.
+
+---
+
+## Day 5
+
+### 6.3
+*  implemented the parameter initialization learnt in 5.4
+* there are 2 types of parameter initialization, there is normal initialization is calculated by means and standard deviation or a constant number
+* the second is xavier initialization which has a formula to calculate the parameters
+* for these two types of parameters there are built-in functions.
+
+---
+
+### 6.4
+* implemented lazy initialization
+* made a normal sequential model with lazylinear and provided on parameter initialization , so when printed the weights of the model got <uninitialized parameter>
+* then passed the data to model and checked the weight shape it had a size so data got initialized by data input
+* for much more detail, made a function called apply_init, for this is needed to make a init function and a class with no init, and used apply_init function to apply the init func to the class.
+
+---
+
+### 6.5
+* implemented two layer in the chapter, one with parameters, and other without parameters
+* in the one with parameters ,made a class model with weights and bias initialized and the progression model is linear, the weights of the model can be found and send data to see the output
+* since it is a parameterized model can have a sequential run on it twice or more
+* in the unparameterized model, progression formula is x-mean(x), there is not weights or bias, the model will still give output
+* for this model in sequential ,used a predefined model like lazylinear for a more complex model.
+
+---
+
+### 6.6
+* this chapter focused more on save data and models
+* the first few codes in the chapter was to normal data variables, like vectors, matrices and dict and read them after they are saved 
+* the second half is to save a model and its parameters.
+
+---
+
+### 6.7
+* this chapter focused on gpus and how to integrate them into the code
+* cuda means gpu, here first go through how to access a gpu, then numbering gpus, tensors on gpus, copying in gpus, storing in gpus, and to a run a model in gpu.
+
+---
+
+### 7.2
+* first made a function for 2d cross-correlation, then made a class for convolution 2d 
+* here the weights and bias are initialized and for progression of the model, cross-correlation of weights and input matrices are used
+* for edge detection a tensor of -1 to 1 is made and its cross-correlation is calculated
+* then a conv2d model is initialized and x and y tensors are trained on it, the loss is calculated for every epoch it decreases
+
+---
+
+### 7.3
+* when convolution is used the size of the image tends to decrease as the formula is (size of image-size of kernel +1), so to prevent the size from decreasing padding is used
+* and its implementation is also done in this chapter
+* stride is the number of rows or columns traversed by the kernel, by increasing the stride the traversal becomes fast, and computing becomes efficient.
+
+---
+
+### 7.4
+* sometime the input data has more that a single channel of data, so to ease out the calculations, the model can loop through the channels and compute
+* and other times there is a need for more that one channel of output, so a stack is used to store multiple channel output data.
+
+---
+
+### 7.5
+* in max pooling the maximum value of specific input window is taken, for average pooling the average of the input window is taken
+* here i made a function that gives output based on if it max pooling or average pooling
+* there is also application of padding and stride here and also application of pooling in multiple channels.
+
+---
+
+### 7.6
+* LeNet is an old image detection model, it has abouts 2, 5x5 convolution layer and 2 3x3 average pooling layers
+* made a lenet class that has conv2d, then average pooling, then conv2d, then average pooling, then flatten, 3 lazy linear layer of which 2 are of sigmoid, so a max of 7 layers
+* also made a function to summaries these layer, and finally trained the mode to get the output.
