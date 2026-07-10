@@ -216,3 +216,67 @@
 * LeNet is an old image detection model, it has abouts 2, 5x5 convolution layer and 2 3x3 average pooling layers
 * made a lenet class that has conv2d, then average pooling, then conv2d, then average pooling, then flatten, 3 lazy linear layer of which 2 are of sigmoid, so a max of 7 layers
 * also made a function to summaries these layer, and finally trained the mode to get the output.
+
+---
+
+## Day 6
+
+### 8.1
+* in this chapter. the focus was about deep convolutional networks
+* the first deep convolution model was AlexNet, AlexNet is a model 8 CNN layers, this is a model similar to LeNet, but it is much stronger as it has more layer than it
+* I also implemented AlexNet , i made a class and implemented modules of relu, convolution 2d , max pooling 2d and lazy linear, then i trained the model on FashionMNIST dataset.
+
+---
+
+### 8.2
+* this chapter focuses on network making using blocks, the main examples demonstrated here is VGG
+* the VGG block is simple it has 3 types of layer a convolution layer, relu and maxing pooling depending on how many convolutions are need the block expands
+* in the main class the blocks are used to compute and then lazy linears are used, this is to make the model a bit flexible and more sophisticated
+* the model is trained on FashionMNIST data and output is given.
+
+---
+
+### 8.3
+* here it is focused on network in network model
+* here a block is made which contains a sequential module having 2d convolutions, then these blocks are used in a main network with maxpooling after each block
+* since this is a model that involves two layer of networks it is called network in network
+* this type of model is each to control and easy to manipulate, the model is trained on FashionMNIST data and output is given.
+
+---
+
+### 8.4
+* it was about multibranch networks, the example of the model used is GoogLeNet
+* this model uses a unique approach that is a combination of both block and nin, here there is something called a inception block
+* here there are 4 branches 1st branch only has a 1x1 convolution layer, the second branch has a 1x1 convo, then a 3x3 convo, the third branch has a 1x1 convo and 5x5 convo, the last branch has 3x3 max pool and 1x1 convo
+* so by using these blocks we add batch function it the main code each has a specific layer limit, and there are a max of 5 batch and one init function
+* the model is trained on FashionMNIST data and output is given.
+
+---
+
+### 8.5
+* it the concept was batch normalization
+* i implemented both from scratch and concise, in scratch i made a function which calculates the batch normalization, then made a class for applying it to neural network in the class
+* in concise i used build-in functions in torch for batch normalization, the model is trained on FashionMNIST data and output is given.
+
+---
+
+### 8.6
+* this chapter we focused ResNet and ResNeXt
+* here to implement the model using something called residual blocks, residual block has convolution layer and batch normalization
+* the resnet class convolution layer, max pooling and relu, the also i added a block function here i used residual class to make residual blocks , then i made resnet18 inherits from resnet, which is trained, the same process is used for resnext block
+* the model is trained on FashionMNIST data and output is given.
+
+---
+
+### 8.7
+* this chapter we focus on DenseNet model
+* here i made a dense block class which uses a convolution block
+* then i made a transition block, which is used in the main densenet class as a transition between Dense blocks
+* the model is trained on FashionMNIST data and output is given.
+
+---
+
+### 8.8
+* The last unit is about designing of convolutional models, the example used is AnyNet, which is a model that can be customized
+* it has 3 functions, stem which uses sequential model, second is stage which uses ResNeXt blocks, and the last in initialization function
+* this model is executed with RegNet model which uses AnyNet as a base design, , the model is trained on FashionMNIST data and output is given.
